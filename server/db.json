@@ -1,0 +1,26 @@
+
+{
+    "users": [
+      {
+        "id": 1,
+        "username": "Nguyen The Cuong",
+        "email": "nguyenthecuong@gmail.com",
+        "fullname":" Nguyễn Thế Cường",
+        "status":true,
+        "password":"04062005",
+        "role":true,
+        "phone": "0966109687",
+        "address":"Hải phòng",
+        "created_at": "8-7-2024",
+        "updated_at": "9-7-2024"
+      }
+    ],
+    "Category": [
+      {
+        "category_id": 1,
+        "category_name": "Bán đồ ăn vặt",
+        "description": true,
+        "products":[]
+      }
+    ]
+  }
