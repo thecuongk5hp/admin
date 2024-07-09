@@ -1,18 +1,23 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Login from './pages/login/LoginForm';
-import Admin from './pages/admin/Admin';
-import PrivateRoute from './pages/admin/PrivateRoute';
+import Home from './pages/user/Home/Home';
+import HomePage from './pages/user/HomePage/HomePage';
+import LoginForm from './pages/login/LoginForm';
+import HomeAdmin from './pages/admin/Home/HomeAdmin';
+import Customer from './pages/admin/customer/Customer';
 
 function App() {
   return (
-    <Router>
+<div>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/admin/*" element={<PrivateRoute />}>
-          <Route path="" element={<Admin />} />
+        <Route path="/" element={<Home />}>
+          <Route index element={<HomePage />} />
+        </Route>
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/admin" element={<HomeAdmin />}>
+          <Route path="/admin/customers" element={<Customer />} />
         </Route>
       </Routes>
-    </Router>
+    </div>
   );
 }
 

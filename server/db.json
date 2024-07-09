@@ -1,26 +1,103 @@
-
 {
-    "users": [
-      {
-        "id": 1,
-        "username": "Nguyen The Cuong",
-        "email": "nguyenthecuong@gmail.com",
-        "fullname":" Nguyễn Thế Cường",
-        "status":true,
-        "password":"04062005",
-        "role":true,
-        "phone": "0966109687",
-        "address":"Hải phòng",
-        "created_at": "8-7-2024",
-        "updated_at": "9-7-2024"
-      }
-    ],
-    "Category": [
-      {
-        "category_id": 1,
-        "category_name": "Bán đồ ăn vặt",
-        "description": true,
-        "products":[]
-      }
-    ]
-  }
+  "users": [
+    {
+      "id": 1,
+      "username": "TheCuong",
+      "email": "TheCuong@gmail.com",
+      "fullname": "Nguyễn Thế Cường",
+      "password": "0966109687",
+      "status": "active",
+      "role": "admin",
+      "avatar": "",
+      "phone": "",
+      "address": "",
+      "created_at": "8/7/2024",
+      "updated_at": "9/7/2024"
+    },
+    {
+      "id": 2,
+      "username": "kimanh",
+      "email": "kimanh@gmail.com",
+      "fullname": "Nguyễn Thế Cường",
+      "password": "13204591359",
+      "status": "active",
+      "role": "user",
+      "avatar": "",
+      "phone": "",
+      "address": "",
+      "created_at": "6/7/2024",
+      "updated_at": "08/07/2024"
+    },
+    {
+      "id": 3,
+      "username": "ha",
+      "email": "ha@gmail.com",
+      "fullname": "Nguyễn Ngọc Hà",
+      "password": "1224356789",
+      "status": "active",
+      "role": "user",
+      "avatar": "",
+      "phone": "",
+      "address": "",
+      "created_at": "6/7/2024",
+      "updated_at": "08/07/2024"
+    },
+    {
+      "username": "PhamBay",
+      "email": "phambay@gmail.com",
+      "fullname": "Phạm Thị Bảy",
+      "password": "0865810156",
+      "status": "active",
+      "role": "user",
+      "avatar": "",
+      "phone": "",
+      "address": "",
+      "created_at": "08/07/2024",
+      "updated_at": "08/07/2024",
+      "id": 4
+    },
+    {
+      "username": "BuiLam",
+      "email": "Builam@gmail.com",
+      "fullname": "Bùi Văn Lậm",
+      "password": "0387208609",
+      "status": "active",
+      "role": "user",
+      "avatar": "",
+      "phone": "",
+      "address": "",
+      "created_at": "08/07/2024",
+      "updated_at": "08/07/2024",
+      "id": 4
+    },
+    {
+      "username": "buihuong",
+      "email": "buihuong@gmail.com",
+      "fullname": "Bùi Thị Hường",
+      "password": "03252663466",
+      "status": "active",
+      "role": "user",
+      "avatar": "",
+      "phone": "",
+      "address": "",
+      "created_at": "08/07/2024",
+      "updated_at": "08/07/2024",
+      "id": 4
+    },
+    {
+      "username": "NguyenKim",
+      "email": "nguyenkim@gmail.com",
+      "fullname": "Nguyễn Trọng Kim",
+      "password": "033258609",
+      "status": "active",
+      "role": "user",
+      "avatar": "",
+      "phone": "",
+      "address": "",
+      "created_at": "08/07/2024",
+      "updated_at": "08/07/2024",
+      "id": 4
+    }
+  ],
+  "categories": []
+}
