@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaGoogle } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './LoginForm.scss';
 import { User } from '../../interfaces/UserInterface';
 const LoginForm: React.FC = () => {
@@ -141,8 +141,12 @@ const LoginForm: React.FC = () => {
               <a href="#!">Quên mật khẩu?</a>
             </div>
             <div className="text-center text-md-start mt-4 pt-2">
+              <Link to="/">
               <button type="submit" className="btn btn-primary px-5">Đăng nhập</button>
+              </Link>
+              <Link to="/register">
               <p className="small fw-bold mt-2 pt-1 mb-2">Bạn chưa có tài khoản? <a href="#!" className="text-danger">Đăng ký</a></p>
+              </Link>
             </div>
           </form>
         </div>

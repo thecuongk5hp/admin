@@ -7,11 +7,12 @@ const UserLayout: React.FC<UserLayoutProps> = ({ children }) => {
   return (
     <div>
       <header>
-        <h1>Our Website</h1>
+        <h1>Website</h1>
         <nav>
           <ul>
             <li><Link to="/">Trang chủ</Link></li>
             <li><Link to="/products">Sản phẩm</Link></li>
+            <li><Link to="/products">Mặt Hàng</Link></li>
           </ul>
         </nav>
       </header>

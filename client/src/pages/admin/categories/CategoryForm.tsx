@@ -35,7 +35,6 @@ const CategoryForm: React.FC<Props> = ({ editingCategory, setEditingCategory, fe
       if (editingCategory) {
         await axios.put(`http://localhost:8080/categories/${editingCategory.id}`, formData);
       } else {
-        // Create new category
         await axios.post('http://localhost:8080/categories', formData);
       }
       fetchCategories();

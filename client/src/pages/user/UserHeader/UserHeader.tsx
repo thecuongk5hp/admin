@@ -6,7 +6,7 @@ const UserHeader: React.FC = () => {
           <div className="row gy-3">
             <div className="col-lg-2 col-sm-4 col-4">
               <Link to="/" className="float-start">
-                <p className="h-35px">HIENSHOP</p>
+                <p className="h-35px">ĐỒ ĂN VẶT</p>
               </Link>
             </div>
             <div className="order-lg-last col-lg-5 col-sm-8 col-8">
@@ -17,7 +17,7 @@ const UserHeader: React.FC = () => {
                 </Link>
                 <a href="#" className="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center">
                   <i className="fas fa-heart m-1 me-md-2"></i>
-                  <p className="d-none d-md-block mb-0">Wishlist</p>
+                  <p className="d-none d-md-block mb-0">...</p>
                 </a>
                 <a href="#" className="border rounded py-1 px-3 nav-link d-flex align-items-center">
                   <i className="fas fa-shopping-cart m-1 me-md-2"></i>

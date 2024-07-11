@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import '../../login/LoginForm'
 import UserHeader from '../UserHeader/UserHeader';
-import HomePage from '../HomePage/HomePage';
+import "../HomePage/HomePage"
  function Home() {
   return (
     <div>
