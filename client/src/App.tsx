@@ -5,12 +5,12 @@ import LoginForm from './pages/login/LoginForm';
 import HomeAdmin from './pages/admin/Home/HomeAdmin';
 import Customer from './pages/admin/customer/Customer';
 import RegisterPage from './pages/register/RegisterPage'; 
-import AdminRegisterPage from './pages/register/AdminRegisterPage';
+import AdminLogin from './pages/admin/loginadmin/AdminLogin';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <Router>
+    // <Router>
       <div>
         <Routes>
           <Route path="/" element={<Home />}>
@@ -19,12 +19,12 @@ function App() {
           <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/admin" element={<HomeAdmin />}>
-            <Route path="customers" element={<Customer />} />
-            <Route path="register" element={<AdminRegisterPage />} />
+            <Route path="/admin/customers" element={<Customer />} />
           </Route>
+            <Route path="/loginadmin" element={<AdminLogin />} />
         </Routes>
       </div>
-    </Router>
+    // </Router>
   );
 }
 

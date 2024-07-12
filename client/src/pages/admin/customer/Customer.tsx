@@ -1,7 +1,8 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios';
-import { User } from "../../../interfaces/UserInterface";
-const Customer = () => {
+import { User } from '../../../interfaces/UserInterface';
+
+const Customer: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [showAddUserForm, setShowAddUserForm] = useState(false);
@@ -18,17 +19,21 @@ const Customer = () => {
     password: '',
     general: '',
   });
+
   useEffect(() => {
     fetchUsers();
   }, []);
+
   const fetchUsers = async () => {
     try {
       const response = await axios.get<User[]>('http://localhost:8080/users');
       setUsers(response.data);
     } catch (error) {
       console.error('Error fetching users:', error);
+      setErrorMessages({ ...errorMessages, general: 'Failed to fetch users. Please try again later.' });
     }
   };
+
   const toggleUserStatus = async (userId: number, newStatus: 'active' | 'locked') => {
     try {
       const userToUpdate = users.find(user => user.id === userId);
@@ -39,7 +44,7 @@ const Customer = () => {
       const updatedUser: Partial<User> = {
         ...userToUpdate,
         status: newStatus,
-        updated_at: new Date().toLocaleDateString('en-GB'),
+        updated_at: new Date().toISOString(),
       };
       const response = await axios.put(`http://localhost:8080/users/${userId}`, updatedUser);
       const updatedUserData: User = response.data;
@@ -49,19 +54,24 @@ const Customer = () => {
       setUsers(updatedUsers);
     } catch (error) {
       console.error('Error updating user status:', error);
+      setErrorMessages({ ...errorMessages, general: 'Failed to update user status. Please try again later.' });
     }
   };
+
   const handleViewUser = (user: User) => {
     setSelectedUser(user);
   };
+
   const handleAddUserToggle = () => {
     setShowAddUserForm(!showAddUserForm);
   };
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     setErrorMessages({ ...errorMessages, [name]: '' });
   };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -69,12 +79,14 @@ const Customer = () => {
       setErrorMessages({ ...errorMessages, general: 'Please fill in all required fields.' });
       return;
     }
+
     try {
       const existingUser = await axios.get(`http://localhost:8080/users?username=${formData.username}`);
       if (existingUser.data.length > 0) {
         setErrorMessages({ ...errorMessages, username: 'Username already exists. Please choose another one.' });
         return;
       }
+
       const newUser: Omit<User, 'id'> = {
         ...formData,
         status: 'active',
@@ -82,9 +94,10 @@ const Customer = () => {
         avatar: '',
         phone: '',
         address: '',
-        created_at: new Date().toLocaleDateString('en-GB'),
-        updated_at: new Date().toLocaleDateString('en-GB'),
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
       };
+
       const response = await axios.post('http://localhost:8080/users', newUser);
       console.log('User registered successfully:', response.data);
       setUsers([...users, response.data]);
@@ -100,6 +113,7 @@ const Customer = () => {
       setErrorMessages({ ...errorMessages, general: 'Failed to register. Please try again later.' });
     }
   };
+
   return (
     <div className="container mt-4">
       <h2 className="mb-4">Customer Management</h2>
@@ -184,7 +198,7 @@ const Customer = () => {
                   <td>{user.username}</td>
                   <td>{user.email}</td>
                   <td>{user.role}</td>
-                  <td>{user.updated_at}</td>
+                  <td>{new Date(user.updated_at).toLocaleDateString('en-GB')}</td>
                   <td>
                     <button className="btn btn-info me-2" onClick={() => handleViewUser(user)}>
                       View

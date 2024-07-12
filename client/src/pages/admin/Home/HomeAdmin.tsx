@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTachometerAlt, faChartArea, faLock, faUsers, faList, faQuestionCircle, faEnvelope, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 const HomeAdmin = () => {
   const navigate = useNavigate();
-
   const onLogout = () => {
     localStorage.removeItem('userToken');
     navigate('/');
@@ -34,7 +33,7 @@ const HomeAdmin = () => {
               </NavLink>
             </li>
             <li className="list-group-item border-0 border-bottom rounded">
-              <NavLink to="customers" className="nav-link">
+              <NavLink to="/admin/customers" className="nav-link">
                 <FontAwesomeIcon icon={faUsers} className="me-3" />
                 Customers
               </NavLink>

@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Category } from '../../../interfaces/CategoriesInterface';
 import CategoryForm from './CategoryForm';
+
 const CategoriesPage: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [editingCategory, setEditingCategory] = useState<Category | null>(null);
+
   useEffect(() => {
     fetchCategories();
   }, []);
+
   const fetchCategories = async () => {
     try {
       const response = await axios.get<Category[]>('http://localhost:8080/categories');
@@ -16,9 +19,11 @@ const CategoriesPage: React.FC = () => {
       console.error('Error fetching categories:', error);
     }
   };
+
   const handleEditCategory = (category: Category) => {
     setEditingCategory(category);
   };
+
   const handleDeleteCategory = async (categoryId: number) => {
     try {
       await axios.delete(`http://localhost:8080/categories/${categoryId}`);
@@ -27,6 +32,7 @@ const CategoriesPage: React.FC = () => {
       console.error('Error deleting category:', error);
     }
   };
+
   return (
     <div className="container mt-4">
       <h2 className="mb-4">Manage Categories</h2>
@@ -42,7 +48,7 @@ const CategoriesPage: React.FC = () => {
                 <th>Action</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody>,
               {categories.map(category => (
                 <tr key={category.id}>
                   <td>{category.id}</td>
@@ -71,4 +77,5 @@ const CategoriesPage: React.FC = () => {
     </div>
   );
 };
+
 export default CategoriesPage;

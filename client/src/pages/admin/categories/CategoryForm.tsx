@@ -1,17 +1,20 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios';
 import { Category } from '../../../interfaces/CategoriesInterface';
+
 interface Props {
   editingCategory: Category | null;
   setEditingCategory: React.Dispatch<React.SetStateAction<Category | null>>;
   fetchCategories: () => void;
 }
+
 const CategoryForm: React.FC<Props> = ({ editingCategory, setEditingCategory, fetchCategories }) => {
   const [formData, setFormData] = useState({
     name: '',
     description: '',
     status: true,
   });
+
   useEffect(() => {
     if (editingCategory) {
       setFormData({
@@ -19,8 +22,15 @@ const CategoryForm: React.FC<Props> = ({ editingCategory, setEditingCategory, fe
         description: editingCategory.description,
         status: editingCategory.status,
       });
+    } else {
+      setFormData({
+        name: '',
+        description: '',
+        status: true,
+      });
     }
   }, [editingCategory]);
+
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
@@ -28,6 +38,7 @@ const CategoryForm: React.FC<Props> = ({ editingCategory, setEditingCategory, fe
       [name]: name === 'status' ? value === 'true' : value,
     }));
   };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -48,6 +59,7 @@ const CategoryForm: React.FC<Props> = ({ editingCategory, setEditingCategory, fe
       console.error('Error saving category:', error);
     }
   };
+
   return (
     <div className="row">
       <div className="col">
@@ -55,26 +67,52 @@ const CategoryForm: React.FC<Props> = ({ editingCategory, setEditingCategory, fe
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="name" className="form-label">Name</label>
-            <input type="text" className="form-control" id="name" name="name" value={formData.name} onChange={handleChange} required />
+            <input
+              type="text"
+              className="form-control"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
           </div>
           <div className="mb-3">
             <label htmlFor="description" className="form-label">Description</label>
-            <textarea className="form-control" id="description" name="description" value={formData.description} onChange={handleChange}></textarea>
+            <textarea
+              className="form-control"
+              id="description"
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+            ></textarea>
           </div>
           <div className="mb-3">
             <label htmlFor="status" className="form-label">Status</label>
-            <select className="form-select" id="status" name="status" value={formData.status.toString()} onChange={handleChange} required>
+            <select
+              className="form-select"
+              id="status"
+              name="status"
+              value={formData.status.toString()}
+              onChange={handleChange}
+              required
+            >
               <option value="true">Active</option>
               <option value="false">Inactive</option>
             </select>
           </div>
-          <button type="submit" className="btn btn-primary me-2">{editingCategory ? 'Save Changes' : 'Add Category'}</button>
+          <button type="submit" className="btn btn-primary me-2">
+            {editingCategory ? 'Save Changes' : 'Add Category'}
+          </button>
           {editingCategory && (
-            <button type="button" className="btn btn-secondary" onClick={() => setEditingCategory(null)}>Cancel</button>
+            <button type="button" className="btn btn-secondary" onClick={() => setEditingCategory(null)}>
+              Cancel
+            </button>
           )}
         </form>
       </div>
     </div>
   );
 };
+
 export default CategoryForm;

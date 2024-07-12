@@ -50,16 +50,19 @@ const RegisterPage: React.FC = () => {
         avatar: '',
         phone: '',
         address: '',
-        created_at: new Date().toLocaleDateString('vi-VN'),
-        updated_at: new Date().toLocaleDateString('vi-VN'),
+        created_at: new Date().toISOString(), // Use ISO 8601 format
+        updated_at: new Date().toISOString(), // Use ISO 8601 format
       };
 
       const response = await axios.post('http://localhost:8080/users', newUser);
       console.log('User registered successfully:', response.data);
-      navigate('/login');
+      navigate('/login'); // Redirect to login page on successful registration
     } catch (error) {
       console.error('Error registering user:', error);
-      setErrorMessages({ ...errorMessages, general: 'Failed to register. Please try again later.' });
+      setErrorMessages((prevErrors) => ({
+        ...prevErrors,
+        general: 'Failed to register. Please try again later.',
+      }));
     }
   };
 
