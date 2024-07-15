@@ -1,13 +1,17 @@
+import React from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
-import HeaderAdmin from '../Header/HeaderAdmin';
+import HeaderAdmin from '../header/HeaderAdmin';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTachometerAlt, faChartArea, faLock, faUsers, faList, faQuestionCircle, faEnvelope, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+
 const HomeAdmin = () => {
   const navigate = useNavigate();
+
   const onLogout = () => {
     localStorage.removeItem('userToken');
     navigate('/');
   };
+
   return (
     <>
       <HeaderAdmin />
@@ -33,7 +37,7 @@ const HomeAdmin = () => {
               </NavLink>
             </li>
             <li className="list-group-item border-0 border-bottom rounded">
-              <NavLink to="/admin/customers" className="nav-link">
+              <NavLink to="customers" className="nav-link">
                 <FontAwesomeIcon icon={faUsers} className="me-3" />
                 Customers
               </NavLink>
@@ -44,6 +48,7 @@ const HomeAdmin = () => {
                   Categories
                 </NavLink>
               </li>
+
           </ul>
           <ul className="list-group list-group-flush mx-3 mt-4" style={{ position: 'absolute', bottom: '20px', width: '100%' }}>
             <li className="list-group-item border-0 rounded">
@@ -66,11 +71,13 @@ const HomeAdmin = () => {
             </li>
           </ul>
         </nav>
+
         <div className="content p-4" style={{ marginLeft: '250px', width: 'calc(100% - 250px)' }}>
-          <Outlet />
+          <Outlet /> {/* Render child routes here */}
         </div>
       </div>
     </>
   );
 };
+
 export default HomeAdmin;

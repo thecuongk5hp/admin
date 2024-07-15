@@ -1,18 +1,17 @@
+// Client/src/layout/UserLayout.tsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-interface UserLayoutProps {
-  children: React.ReactNode;
-}
-const UserLayout: React.FC<UserLayoutProps> = ({ children }) => {
+
+const UserLayout: React.FC = ({ children }) => {
   return (
     <div>
       <header>
-        <h1>Website</h1>
+        <h1>Our Website</h1>
         <nav>
           <ul>
             <li><Link to="/">Trang chủ</Link></li>
             <li><Link to="/products">Sản phẩm</Link></li>
-            <li><Link to="/products">Mặt Hàng</Link></li>
+            {/* Add more links as needed */}
           </ul>
         </nav>
       </header>
@@ -20,8 +19,10 @@ const UserLayout: React.FC<UserLayoutProps> = ({ children }) => {
         {children}
       </main>
       <footer>
+        {/* Footer content */}
       </footer>
     </div>
   );
 }
+
 export default UserLayout;

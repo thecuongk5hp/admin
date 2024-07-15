@@ -1,10 +1,10 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios';
-import { User } from '../../../interfaces/UserInterface';
+import { User } from '../../../interfaces/UserInterface'; // Import User interface
 
-const Customer: React.FC = () => {
+const Customer = () => {
   const [users, setUsers] = useState<User[]>([]);
-  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [selectedUser, setSelectedUser] = useState<User | null>(null); // State to track selected user
   const [showAddUserForm, setShowAddUserForm] = useState(false);
   const [formData, setFormData] = useState({
     username: '',
@@ -30,7 +30,6 @@ const Customer: React.FC = () => {
       setUsers(response.data);
     } catch (error) {
       console.error('Error fetching users:', error);
-      setErrorMessages({ ...errorMessages, general: 'Failed to fetch users. Please try again later.' });
     }
   };
 
@@ -41,20 +40,22 @@ const Customer: React.FC = () => {
         console.error('User not found with userId:', userId);
         return;
       }
+
       const updatedUser: Partial<User> = {
         ...userToUpdate,
         status: newStatus,
-        updated_at: new Date().toISOString(),
+        updated_at: new Date().toLocaleDateString('en-GB'),
       };
+
       const response = await axios.put(`http://localhost:8080/users/${userId}`, updatedUser);
       const updatedUserData: User = response.data;
+
       const updatedUsers = users.map(user =>
         user.id === userId ? updatedUserData : user
       );
       setUsers(updatedUsers);
     } catch (error) {
       console.error('Error updating user status:', error);
-      setErrorMessages({ ...errorMessages, general: 'Failed to update user status. Please try again later.' });
     }
   };
 
@@ -94,12 +95,13 @@ const Customer: React.FC = () => {
         avatar: '',
         phone: '',
         address: '',
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
+        created_at: new Date().toLocaleDateString('en-GB'),
+        updated_at: new Date().toLocaleDateString('en-GB'),
       };
 
       const response = await axios.post('http://localhost:8080/users', newUser);
       console.log('User registered successfully:', response.data);
+
       setUsers([...users, response.data]);
       setShowAddUserForm(false);
       setFormData({
@@ -198,7 +200,7 @@ const Customer: React.FC = () => {
                   <td>{user.username}</td>
                   <td>{user.email}</td>
                   <td>{user.role}</td>
-                  <td>{new Date(user.updated_at).toLocaleDateString('en-GB')}</td>
+                  <td>{user.updated_at}</td>
                   <td>
                     <button className="btn btn-info me-2" onClick={() => handleViewUser(user)}>
                       View

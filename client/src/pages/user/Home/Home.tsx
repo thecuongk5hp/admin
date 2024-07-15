@@ -1,12 +1,11 @@
-import { Link } from 'react-router-dom';
-import '../../login/LoginForm'
-import UserHeader from '../UserHeader/UserHeader';
-import "../HomePage/HomePage"
- function Home() {
+import { Link, Outlet } from 'react-router-dom';
+import HeaderUser from '../headerUser/HeaderUser';
+
+export default function Home() {
   return (
     <div>
       <header>
-        <UserHeader></UserHeader>
+        <HeaderUser />
         <nav className="navbar navbar-expand-lg navbar-light bg-white">
           <div className="container justify-content-center justify-content-md-between">
             <button className="navbar-toggler border py-2 text-dark" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarLeftAlignExample" aria-controls="navbarLeftAlignExample" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,38 +17,17 @@ import "../HomePage/HomePage"
                   <Link to="/" className="nav-link text-dark" aria-current="page">Home</Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/categories" className="nav-link text-dark">Categories</Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/hot-offers" className="nav-link text-dark">Hot offers</Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/gift-boxes" className="nav-link text-dark">Gift boxes</Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/projects" className="nav-link text-dark">Projects</Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/menu-item" className="nav-link text-dark">Menu item</Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/menu-name" className="nav-link text-dark">Menu name</Link>
-                </li>
-                <li className="nav-item dropdown">
-                  <Link to="/others" className="nav-link dropdown-toggle text-dark" id="navbarDropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false">Others</Link>
-                  <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><Link to="/action" className="dropdown-item">Action</Link></li>
-                    <li><Link to="/another-action" className="dropdown-item">Another action</Link></li>
-                    <li><hr className="dropdown-divider" /></li>
-                    <li><Link to="/something-else" className="dropdown-item">Something else here</Link></li>
-                  </ul>
+                  <Link to="/Products" className="nav-link text-dark">Products</Link>
                 </li>
               </ul>
             </div>
           </div>
         </nav>
       </header>
+      <section style={{ minHeight: 'calc(100vh - 112px)' }}>
+        {/* 112px là chiều cao của header và navbar */}
+        <Outlet />
+      </section>
     </div>
   );
 }
-export default Home;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios';
-import { Category } from '../../../interfaces/CategoriesInterface';
+import { Category } from '../../../interfaces/CategoriesInterface'; // Đảm bảo import Category interface từ đúng đường dẫn
 
 interface Props {
   editingCategory: Category | null;
@@ -12,7 +12,7 @@ const CategoryForm: React.FC<Props> = ({ editingCategory, setEditingCategory, fe
   const [formData, setFormData] = useState({
     name: '',
     description: '',
-    status: true,
+    status: true, // Default status active
   });
 
   useEffect(() => {
@@ -21,12 +21,6 @@ const CategoryForm: React.FC<Props> = ({ editingCategory, setEditingCategory, fe
         name: editingCategory.name,
         description: editingCategory.description,
         status: editingCategory.status,
-      });
-    } else {
-      setFormData({
-        name: '',
-        description: '',
-        status: true,
       });
     }
   }, [editingCategory]);
@@ -44,12 +38,14 @@ const CategoryForm: React.FC<Props> = ({ editingCategory, setEditingCategory, fe
 
     try {
       if (editingCategory) {
+        // Update existing category
         await axios.put(`http://localhost:8080/categories/${editingCategory.id}`, formData);
       } else {
+        // Create new category
         await axios.post('http://localhost:8080/categories', formData);
       }
-      fetchCategories();
-      setEditingCategory(null);
+      fetchCategories(); // Reload categories after update or create
+      setEditingCategory(null); // Clear editing state
       setFormData({
         name: '',
         description: '',
@@ -57,6 +53,7 @@ const CategoryForm: React.FC<Props> = ({ editingCategory, setEditingCategory, fe
       });
     } catch (error) {
       console.error('Error saving category:', error);
+      // Handle error saving category
     }
   };
 
@@ -67,47 +64,22 @@ const CategoryForm: React.FC<Props> = ({ editingCategory, setEditingCategory, fe
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="name" className="form-label">Name</label>
-            <input
-              type="text"
-              className="form-control"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
+            <input type="text" className="form-control" id="name" name="name" value={formData.name} onChange={handleChange} required />
           </div>
           <div className="mb-3">
             <label htmlFor="description" className="form-label">Description</label>
-            <textarea
-              className="form-control"
-              id="description"
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-            ></textarea>
+            <textarea className="form-control" id="description" name="description" value={formData.description} onChange={handleChange}></textarea>
           </div>
           <div className="mb-3">
             <label htmlFor="status" className="form-label">Status</label>
-            <select
-              className="form-select"
-              id="status"
-              name="status"
-              value={formData.status.toString()}
-              onChange={handleChange}
-              required
-            >
+            <select className="form-select" id="status" name="status" value={formData.status.toString()} onChange={handleChange} required>
               <option value="true">Active</option>
               <option value="false">Inactive</option>
             </select>
           </div>
-          <button type="submit" className="btn btn-primary me-2">
-            {editingCategory ? 'Save Changes' : 'Add Category'}
-          </button>
+          <button type="submit" className="btn btn-primary me-2">{editingCategory ? 'Save Changes' : 'Add Category'}</button>
           {editingCategory && (
-            <button type="button" className="btn btn-secondary" onClick={() => setEditingCategory(null)}>
-              Cancel
-            </button>
+            <button type="button" className="btn btn-secondary" onClick={() => setEditingCategory(null)}>Cancel</button>
           )}
         </form>
       </div>

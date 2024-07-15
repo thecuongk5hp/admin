@@ -1,3 +1,5 @@
+import React from 'react';
+
 const HeaderAdmin = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light w-100" style={{ position: 'fixed', top: 0, zIndex: 1000 }}>
@@ -6,7 +8,7 @@ const HeaderAdmin = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <a className="navbar-brand" href="#">
-          <img src="tse2.mm.bing.net/th?id=OIP.Kxvc9RjxDCsNCoQRvEcn7wHaD4&pid=Api&P=0&h=180" height="30" alt="" loading="lazy" />
+          <img src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.webp" height="30" alt="" loading="lazy" />
         </a>
 
         <div className="collapse navbar-collapse">
@@ -15,6 +17,7 @@ const HeaderAdmin = () => {
             <i className="fa fa-search mx-2"></i>
           </div>
         </div>
+
         <ul className="navbar-nav ml-auto d-flex flex-row align-items-center">
           <li className="nav-item me-3 me-lg-0">
             <a className="nav-link" href="#">
@@ -47,4 +50,5 @@ const HeaderAdmin = () => {
     </nav>
   );
 };
+
 export default HeaderAdmin;
